@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<head>
+    <script language="JavaScript">
+<!--
+        function validateForm() {
+            var isValid = true;
+            var status = document.getElementById("status");
+
+            with (document.registrationForm) {
+                
+                if (fullname.value == "" || username.value == "" || password.value == "" || egn.value == "") {
+                    status.innerHTML = "Моля, попълнете всички задължителни полета.";
+                    isValid = false;
+                }
+                
+                else if (!validateEmail(email.value)) {
+                    status.innerHTML = "Моля, въведете валиден E-mail адрес.";
+                    isValid = false;
+                }
+                
+                else if (!terms.checked) {
+                    status.innerHTML = "Моля, потвърдете приемането на условията.";
+                    isValid = false;
+                }
+                else {
+                    
+                    status.innerHTML = "Успешна регистрация!";
+                }
+            }
+
+            return isValid;
+        }
+
+        function validateEmail(email) {
+           
+            var regex = /\S+@\S+\.\S+/;
+            return regex.test(email);
+        }
+        </script>
+</head>
+<body bgcolor="#93DDE5">
+    <form name="registrationForm" onsubmit="return validateForm()">
+        <table border="0">
+            <tr>
+                <td width="83">
+                    Име:
+                </td>
+                <td>
+                    <input type="text" name="fullname" value="" size="32">
+                </td>
+            </tr>
+            <tr>
+                <td width="83">
+                    Потребителско име:
+                </td>
+                <td>
+                    <input type="text" name="username" value="" size="32">
+                </td>
+            </tr>
+            <tr>
+                <td width="83">
+                    Парола:
+                </td>
+                <td>
+                    <input type="password" name="password" value="" size="32">
+                </td>
+            </tr>
+            <tr>
+                <td width="83">
+                    EГН:
+                </td>
+                <td>
+                    <input type="text" name="egn" value="" size="32">
+                </td>
+            </tr>
+            <tr>
+                <td width="83">
+                    Адрес:
+                </td>
+                <td>
+                    <input type="text" name="address" value="" size="32">
+                </td>
+            </tr>
+            <tr>
+                <td width="83">
+                    E-mail:
+                </td>
+                <td>
+                    <input type="text" name="email" value="" size="32">
+                </td>
+            </tr>
+            <tr>
+                <td width="83">
+                    Телефон:
+                </td>
+                <td>
+                    <input type="text" name="phone" value="" size="32">
+                </td>
+            </tr>
+            <tr>
+                <td width="83">
+                    <input type="checkbox" name="terms" id="terms"> Съгласен съм с условията
+                </td>
+                <td>
+                    <input type="submit" value="Регистрирай се">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <div id="status"></div>
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
+

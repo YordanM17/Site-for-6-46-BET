@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Случайно генерирана таблица на Йордан Мечтанов</title>
+    <style>
+        body {
+            background-color: #E58220; 
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 50%;
+            margin: 20px auto;
+        }
+
+        th, td {
+            border: 1px solid #333;
+            padding: 8px;
+            text-align: center;
+        }
+
+        button {
+            margin: 20px;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+        }
+
+        p {
+            margin: 10px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Случайно генерирана таблица на Йордан Мечтанов</h1>
+
+    <table id="randomTable">
+        <thead>
+            <tr>
+                <th>Колона 1</th>
+                <th>Колона 2</th>
+                <th>Колона 3</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <button onclick="generateRandomTable()">Генерирай отново</button>
+
+    <p>
+        <span style="font-size: 18px; font-weight: bold;">Играйте трима,</span>
+        <br>
+        <span style="font-size: 18px; font-weight: bold;">всеки да си избере колона и този с колоната със сбор от цифри, който е най-голям печели!</span>
+    </p>
+
+    <script>
+        function getRandomNumber(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        function generateRandomTable() {
+            var tableBody = document.querySelector('#randomTable tbody');
+            tableBody.innerHTML = ''; 
+
+            for (var i = 0; i < 5; i++) { 
+                var row = document.createElement('tr');
+
+                for (var j = 0; j < 3; j++) {
+                    var cell = document.createElement('td');
+                    cell.textContent = getRandomNumber(1, 100);
+                    row.appendChild(cell);
+                }
+
+                tableBody.appendChild(row);
+            }
+        }
+
+        generateRandomTable(); 
+    </script>
+
+</body>
+</html>

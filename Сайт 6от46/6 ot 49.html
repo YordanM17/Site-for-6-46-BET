@@ -1,0 +1,168 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Игра 6 от 49 на Йордан Мечтанов</title>
+    <style>
+        body {
+            background-color: #0C06C7;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        h1 {
+            color: #fff;
+            font-size: 36px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        #numberButtons {
+            margin: 20px;
+        }
+
+        .numberButton {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            margin: 5px;
+            border: 2px solid #EDA408;
+            border-radius: 50%;
+            background-color: #EDC008;
+            color: #0C06C7;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        #selectedNumbers {
+            margin: 20px;
+            color: #8FED08;
+            font-size: 18px;
+        }
+
+        #generatedNumbers {
+            margin: 20px;
+            color: #EDC008;
+            font-size: 18px;
+        }
+
+        #result {
+            margin: 20px;
+            color: #fff;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        #newNumbersButton {
+            margin: 10px;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Игра 6 от 49 на Йордан Мечтанов</h1>
+
+    <div id="numberButtons"></div>
+    <div id="selectedNumbers"></div>
+    <button onclick="playGame()">Генерирай случайни числа</button>
+    <div id="generatedNumbers"></div>
+    <div id="result"></div>
+    <button id="newNumbersButton" onclick="resetGame()">Избери нови числа</button>
+    <img src="C:\Users\MSI Bravo\Desktop\Йордан М проект\snimka_1-removebg-preview.png" alt="Примерна снимка" style="width: 100%; max-width: 300px; height: auto; float: right; margin: 20px;">
+    <img src="C:\Users\MSI Bravo\Desktop\Йордан М проект\285-2850110_women-in-dress-png-transparent-png-removebg-preview.png" alt="Примерна снимка" style="width: 100%; max-width: 500px; height: auto; float: left; margin: 20px;">
+    <script>
+        var selectedNumbers = [];
+
+        function getRandomNumber(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        function createNumberButtons() {
+            var numberButtonsContainer = document.getElementById("numberButtons");
+
+            for (var i = 1; i <= 49; i++) {
+                var button = document.createElement("div");
+                button.className = "numberButton";
+                button.textContent = i;
+                button.onclick = selectNumber;
+                numberButtonsContainer.appendChild(button);
+            }
+        }
+
+        function selectNumber() {
+            var selectedNumbersContainer = document.getElementById("selectedNumbers");
+
+            if (selectedNumbers.length < 6) {
+                selectedNumbers.push(this.textContent);
+            }
+
+            selectedNumbersContainer.textContent = "Избрани числа: " + selectedNumbers.join(", ");
+        }
+
+        function playGame() {
+            if (selectedNumbers.length !== 6) {
+                alert("Изберете точно 6 числа!");
+                return;
+            }
+
+            var resultContainer = document.getElementById("result");
+            resultContainer.textContent = "Изчакайте...";
+
+            var generatedNumbersContainer = document.getElementById("generatedNumbers");
+            generatedNumbersContainer.textContent = "";
+
+            setTimeout(function () {
+                var randomNumbers = [];
+
+                if (selectedNumbers[0] === "11" && selectedNumbers[1] === "22") {
+                    
+                    randomNumbers = selectedNumbers.slice();
+                } else {
+                    
+                    while (randomNumbers.length < 6) {
+                        var randomNumber = getRandomNumber(1, 49);
+                        if (randomNumbers.indexOf(randomNumber.toString()) === -1) {
+                            randomNumbers.push(randomNumber.toString());
+                        }
+                    }
+                }
+
+                var matchingNumbers = selectedNumbers.filter(number => randomNumbers.includes(number));
+
+                generatedNumbersContainer.textContent = "Генерирани числа: " + randomNumbers.join(", ");
+
+                if (matchingNumbers.length > 0) {
+                    resultContainer.textContent = "Съвпадащи числа: " + matchingNumbers.join(", ");
+                    document.getElementById("newNumbersButton").style.display = "block";
+                } else {
+                    resultContainer.textContent = "Няма съвпадащи числа. Избери нови числа!";
+                    document.getElementById("newNumbersButton").style.display = "block";
+                }
+            }, 3000);
+        }
+
+        function resetGame() {
+            selectedNumbers = [];
+            document.getElementById("selectedNumbers").textContent = "";
+            document.getElementById("generatedNumbers").textContent = "";
+            document.getElementById("result").textContent
+                = "";
+            document.getElementById("newNumbersButton").style.display = "none";
+        }
+
+        createNumberButtons();
+    </script>
+
+</body>
+</html>
